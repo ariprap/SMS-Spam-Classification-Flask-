@@ -8,7 +8,7 @@ import nltk as nlp
 from nltk.corpus import stopwords
 from statistics import mean 
 
-import re
+import re 
 
 from nltk.stem import PorterStemmer
 from sklearn.model_selection import train_test_split
@@ -24,7 +24,7 @@ simplefilter(action='ignore', category=FutureWarning)
 
 @app.route('/')
 def home():
-	return render_template('home.html')
+	return render_template('home.html', show = 0)
 
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -122,7 +122,7 @@ def predict():
         probability = lr.predict_proba(sm) #predict probability
 
         print(my_prediction, " prob:(0,1) or (ham, spam) ", probability)
-    return render_template('result.html',prediction = my_prediction)
+    return render_template('home.html',prediction = my_prediction, show = 1)
 
 
 
